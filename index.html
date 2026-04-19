@@ -15,7 +15,7 @@
     <main>
         <section class="module">
             <h2>Lojik Mikroişlemler</h2>
-            <p>Lojik mikroişlemler, saklayıcılardaki bit dizinleri üzerinde ikili işlemleri belirler[cite: 2049]. İkili data üzerinde bit manipülasyonu yapmak için yararlıdır[cite: 2051].</p>
+            <p>Lojik mikroişlemler, saklayıcılardaki bit dizinleri üzerinde ikili işlemleri belirler. İkili data üzerinde bit manipülasyonu (maskeleme, silme vb.) yapmak için kullanılır.</p>
 
             <div class="simulator-card">
                 <h3>Lojik Mikroişlem Simülatörü</h3>
@@ -38,13 +38,49 @@
                         <option value="XOR">XOR (A ⊕ B) - Seçici Tümleme</option>
                         <option value="NOT">NOT (A') - İçerik Tümleme</option>
                     </select>
-                    <button id="calculateBtn">Çalıştır</button>
+                    <button id="calculateBtn" class="primary-btn">Çalıştır</button>
                 </div>
 
                 <div class="result-box">
                     <h4>Sonuç: <span id="result">0000</span></h4>
                     <p id="explanation">İşlem sonucunu görmek için 'Çalıştır'a bas.</p>
                 </div>
+            </div>
+        </section>
+
+        <section class="module game-module">
+            <h2>🎮 Mini Oyun: Veriyolu Ustası</h2>
+            <p>Mano'nun Temel Bilgisayarı'nda ortak yola (bus) hangi saklayıcının çıkacağını 3 adet kontrol sinyali (S2, S1, S0) belirler. Süre bitmeden istenen saklayıcıyı yola bağla!</p>
+
+            <div class="game-board">
+                <div class="game-header">
+                    <div class="score-board">Skor: <span id="score">0</span></div>
+                    <div class="timer">Süre: <span id="time">30</span>s</div>
+                </div>
+
+                <div class="mission-box">
+                    <p>Görev: <span id="target-register" class="highlight">Hazırlanıyor...</span> saklayıcısını veriyoluna bağla!</p>
+                </div>
+
+                <div class="mux-controls">
+                    <div class="bit-control">
+                        <label>S2</label>
+                        <button class="bit-btn" id="s2">0</button>
+                    </div>
+                    <div class="bit-control">
+                        <label>S1</label>
+                        <button class="bit-btn" id="s1">0</button>
+                    </div>
+                    <div class="bit-control">
+                        <label>S0</label>
+                        <button class="bit-btn" id="s0">0</button>
+                    </div>
+                </div>
+
+                <button id="route-btn" class="action-btn" disabled>Veriyi Yola Sür!</button>
+                <button id="start-game-btn" class="action-btn start-btn">Oyunu Başlat</button>
+                
+                <div id="game-feedback" class="feedback"></div>
             </div>
         </section>
     </main>

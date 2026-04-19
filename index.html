@@ -1,264 +1,54 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hesap Bildirimi</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --cream: #f5f0e8;
-      --ink: #1a1510;
-      --warm-mid: #8a7560;
-      --accent: #b5833a;
-      --rule: #c9b89a;
-      --fade: #e8dfd0;
-    }
-
-    body {
-      background-color: var(--cream);
-      color: var(--ink);
-      font-family: 'Lato', sans-serif;
-      font-weight: 300;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 20px;
-      overflow-x: hidden;
-    }
-
-    /* Subtle paper texture overlay */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        radial-gradient(ellipse at 20% 20%, rgba(181,131,58,0.06) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 80%, rgba(138,117,96,0.08) 0%, transparent 60%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .card {
-      position: relative;
-      z-index: 1;
-      max-width: 640px;
-      width: 100%;
-      background: #faf7f2;
-      border: 1px solid var(--rule);
-      padding: 64px 60px;
-      box-shadow:
-        0 2px 4px rgba(26,21,16,0.04),
-        0 8px 32px rgba(26,21,16,0.08),
-        0 0 0 6px #f5f0e8,
-        0 0 0 7px var(--rule);
-      animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Top ornament */
-    .ornament {
-      text-align: center;
-      margin-bottom: 36px;
-      opacity: 0;
-      animation: fadeIn 0.6s 0.4s ease both;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-
-    .ornament svg {
-      width: 48px;
-      height: 48px;
-      color: var(--accent);
-    }
-
-    /* Thin rule */
-    .rule {
-      width: 60px;
-      height: 1px;
-      background: var(--accent);
-      margin: 0 auto 36px;
-      opacity: 0;
-      animation: widen 0.8s 0.5s ease both;
-    }
-
-    @keyframes widen {
-      from { width: 0; opacity: 0; }
-      to   { width: 60px; opacity: 1; }
-    }
-
-    .label {
-      font-family: 'Lato', sans-serif;
-      font-weight: 400;
-      font-size: 10px;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--warm-mid);
-      text-align: center;
-      margin-bottom: 20px;
-      opacity: 0;
-      animation: fadeIn 0.6s 0.6s ease both;
-    }
-
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(24px, 4vw, 30px);
-      font-weight: 600;
-      color: var(--ink);
-      text-align: center;
-      line-height: 1.3;
-      margin-bottom: 12px;
-      opacity: 0;
-      animation: fadeIn 0.6s 0.7s ease both;
-    }
-
-    .subtitle {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 14px;
-      color: var(--warm-mid);
-      text-align: center;
-      margin-bottom: 40px;
-      opacity: 0;
-      animation: fadeIn 0.6s 0.8s ease both;
-    }
-
-    .divider {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 40px;
-      opacity: 0;
-      animation: fadeIn 0.6s 0.85s ease both;
-    }
-    .divider::before, .divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--rule);
-    }
-    .divider-diamond {
-      width: 6px;
-      height: 6px;
-      background: var(--accent);
-      transform: rotate(45deg);
-      flex-shrink: 0;
-    }
-
-    .body-text {
-      font-size: 15px;
-      line-height: 1.85;
-      color: #3a3028;
-      font-weight: 300;
-      opacity: 0;
-      animation: fadeIn 0.7s 0.95s ease both;
-    }
-
-    .body-text p { margin-bottom: 22px; }
-    .body-text p:last-child { margin-bottom: 0; }
-
-    .emphasis {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      color: var(--ink);
-      font-weight: 400;
-    }
-
-    .footer-rule {
-      margin: 44px 0 28px;
-      height: 1px;
-      background: var(--rule);
-      opacity: 0;
-      animation: fadeIn 0.6s 1.1s ease both;
-    }
-
-    .footer-block {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      opacity: 0;
-      animation: fadeIn 0.6s 1.15s ease both;
-    }
-
-    .footer-block .seal {
-      font-family: 'Lato', sans-serif;
-      font-size: 10px;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--warm-mid);
-    }
-
-    .footer-block .date {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 12px;
-      color: var(--warm-mid);
-    }
-
-    @media (max-width: 520px) {
-      .card { padding: 44px 28px; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOT - İnteraktif Öğrenme</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="card">
+    <header>
+        <h1>Bilgisayar Organizasyonu ve Tasarımı</h1>
+        <p>Dr. Fatih Keleş - İnteraktif Ders Modülleri</p>
+    </header>
 
-    <div class="ornament">
-      <!-- Envelope / seal icon -->
-      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor">
-        <rect x="6" y="12" width="36" height="26" rx="2" stroke-width="1.5"/>
-        <path d="M6 14l18 13L42 14" stroke-width="1.5" stroke-linejoin="round"/>
-        <path d="M24 8v6M20 10l4-4 4 4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
+    <main>
+        <section class="module">
+            <h2>Lojik Mikroişlemler</h2>
+            <p>Lojik mikroişlemler, saklayıcılardaki bit dizinleri üzerinde ikili işlemleri belirler[cite: 2049]. İkili data üzerinde bit manipülasyonu yapmak için yararlıdır[cite: 2051].</p>
 
-    <div class="label">Resmi Bildirim</div>
+            <div class="simulator-card">
+                <h3>Lojik Mikroişlem Simülatörü</h3>
+                <div class="inputs">
+                    <div class="input-group">
+                        <label for="inputA">Register A (4-bit):</label>
+                        <input type="text" id="inputA" maxlength="4" value="1010">
+                    </div>
+                    <div class="input-group">
+                        <label for="inputB">Register B (4-bit):</label>
+                        <input type="text" id="inputB" maxlength="4" value="1100">
+                    </div>
+                </div>
 
-    <h1>Hesabınıza İlişkin<br/>Önemli Bir Duyuru</h1>
-    <p class="subtitle">Lütfen dikkatle okuyunuz</p>
+                <div class="controls">
+                    <label for="operation">İşlem Seç:</label>
+                    <select id="operation">
+                        <option value="AND">AND (A ∧ B) - Maskeleme</option>
+                        <option value="OR">OR (A ∨ B) - Seçici Birleme</option>
+                        <option value="XOR">XOR (A ⊕ B) - Seçici Tümleme</option>
+                        <option value="NOT">NOT (A') - İçerik Tümleme</option>
+                    </select>
+                    <button id="calculateBtn">Çalıştır</button>
+                </div>
 
-    <div class="divider"><div class="divider-diamond"></div></div>
+                <div class="result-box">
+                    <h4>Sonuç: <span id="result">0000</span></h4>
+                    <p id="explanation">İşlem sonucunu görmek için 'Çalıştır'a bas.</p>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    <div class="body-text">
-      <p>
-        Sayın kullanıcımız,
-      </p>
-      <p>
-        Bu bildirim, <span class="emphasis">hesabınızla ilgili gerçekleştirilen bir işlem</span> hakkında sizi bilgilendirmek amacıyla hazırlanmıştır. Tarafınıza karşı her zaman açık ve dürüst olmayı bir ilke olarak benimsedik; bu nedenle yaşanan gelişmeyi size en nazik biçimde aktarmak istedik.
-      </p>
-      <p>
-        İlgili inceleme ve değerlendirme sürecinin tamamlanmasının ardından, hesabınız <span class="emphasis">yetkili merciler tarafından kalıcı olarak alınmış</span> ve sistemimizdeki erişiminiz sona erdirilmiştir. Bu karar, ilgili prosedürler çerçevesinde titizlikle yürütülen bir sürecin sonucudur.
-      </p>
-      <p>
-        Söz konusu tarihten itibaren hesabınıza bir daha erişim sağlamanız mümkün olmayacaktır. Hesabınıza bağlı tüm veriler, içerikler ve hizmetler artık erişiminize kapalıdır.
-      </p>
-      <p>
-        Bu sürecin sizin için ne denli güç olabileceğini anlıyor; yaşadığınız durumu saygıyla karşılıyoruz. Bu konuya ilişkin herhangi bir sorunuz bulunması hâlinde, resmi iletişim kanallarımız aracılığıyla bizimle iletişime geçebilirsiniz.
-      </p>
-      <p>
-        Anlayışınız için teşekkür ederiz.
-      </p>
-    </div>
-
-    <div class="footer-rule"></div>
-
-    <div class="footer-block">
-      <span class="seal">Yetkili Birim &nbsp;·&nbsp; Güvenlik & Uyum</span>
-      <span class="date">19 Nisan 2026</span>
-      <span class="body-text">Şimdi lütfen BOT çalışmaya devam ediniz...</span>
-    </div>
-
-  </div>
+    <script src="script.js"></script>
 </body>
 </html>

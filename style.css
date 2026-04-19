@@ -29,15 +29,19 @@ main {
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
 }
 
 h2 {
     color: #2980b9;
     margin-bottom: 1rem;
+    border-bottom: 2px solid #ecf0f1;
+    padding-bottom: 0.5rem;
 }
 
+/* --- Lojik Simülatör Stilleri --- */
 .simulator-card {
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     padding: 1.5rem;
     background: #ecf0f1;
     border-left: 5px solid #3498db;
@@ -46,7 +50,7 @@ h2 {
 
 .inputs {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     margin-bottom: 1rem;
 }
 
@@ -61,22 +65,22 @@ input[type="text"], select {
     border-radius: 4px;
     font-size: 1rem;
     font-family: monospace;
+    width: 150px;
 }
 
-button {
-    padding: 0.5rem 1rem;
-    background: #27ae60;
+select { width: 100%; margin-bottom: 1rem; }
+
+.primary-btn {
+    padding: 0.5rem 1.5rem;
+    background: #2980b9;
     color: #fff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
-    margin-top: 1rem;
 }
 
-button:hover {
-    background: #2ecc71;
-}
+.primary-btn:hover { background: #3498db; }
 
 .result-box {
     margin-top: 1.5rem;
@@ -89,11 +93,115 @@ button:hover {
 #result {
     color: #c0392b;
     font-family: monospace;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    margin-left: 0.5rem;
 }
 
 #explanation {
     margin-top: 0.5rem;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: #555;
+}
+
+/* --- Mini Oyun Stilleri --- */
+.game-module {
+    background: #2c3e50;
+    color: #ecf0f1;
+}
+
+.game-module h2 {
+    color: #f1c40f;
+    border-bottom-color: #34495e;
+}
+
+.game-board {
+    background: #34495e;
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    border: 2px solid #7f8c8d;
+    margin-top: 1.5rem;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #2ecc71;
+}
+
+.mission-box {
+    background: #1abc9c;
+    color: #fff;
+    padding: 1rem;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+}
+
+.highlight {
+    color: #f1c40f;
+    font-weight: bold;
+    font-size: 2rem;
+    display: block;
+    margin: 0.5rem 0;
+}
+
+.mux-controls {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.bit-control label {
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.bit-btn {
+    width: 70px;
+    height: 70px;
+    font-size: 2.5rem;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.bit-btn:active { transform: scale(0.95); }
+.bit-btn.active { background: #2ecc71; }
+
+.action-btn {
+    font-size: 1.2rem;
+    padding: 1rem 2rem;
+    width: 100%;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    background: #3498db;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.action-btn:hover { background: #2980b9; }
+.action-btn:disabled {
+    background: #95a5a6;
+    cursor: not-allowed;
+}
+
+.start-btn { background: #f39c12; }
+.start-btn:hover { background: #d35400; }
+
+.feedback {
+    min-height: 24px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 1rem;
 }
